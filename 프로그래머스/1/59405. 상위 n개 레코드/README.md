@@ -6,125 +6,15 @@
 
 메모리: 0.0 MB, 시간: 0.00 ms
 
-### 구분
+- 서브쿼리 : 다른 SQL 문장 안에 포함된 쿼리. 주로 외부 쿼리의 결과에 영향을 미치거나 필요한 데이터를 제한하거나 계산하기 위해 사용된다.
+- rownum : 결과 집합에서 특정 순서의 행을 가리킨다. 주로 서브쿼리나 외부쿼리에서 사용. 결과 집합이 정렬되지 않은 경우에도 사용할 수 있으나 정렬된 결과를 기반으로 rownum을 쓰려면 서브쿼리와 함께 써야 한다.
 
-코딩테스트 연습 > SELECT
+**`rownum`보다는 `fetch first`를 쓰는 것이 더 권장된다.** 가독성과 표현력이 더 좋기 때문.
 
-### 채점결과
+- fetch first : 결과 집합에서 특정 개수의 행을 선택할 때 사용. 특정 숫자의 행이나 특정 비율의 행을 선택함. rownum보다 더 간결하고 직관적인 코드 작성 가능. `fetch first 1 row only`는 정렬된 결과에서 첫 번째 행을 선택한다는 의미.
 
-Empty
+datetime 기준으로 name컬럼을 정렬하면 첫 번째 행은 가장 먼저 들어온 동물의 이름이다. fetch first 1 row only는 첫 번째 행을 뜻하므로 **서브쿼리를 함께 써야 하는 `rownum`보다 코드가 쉽고 직관적이다.**
 
-### 제출 일자
-
-2024년 04월 27일 20:47:07
-
-### 문제 설명
-
-<p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p>
-<table class="table">
-        <thead><tr>
-<th>NAME</th>
-<th>TYPE</th>
-<th>NULLABLE</th>
-</tr>
-</thead>
-        <tbody><tr>
-<td>ANIMAL_ID</td>
-<td>VARCHAR(N)</td>
-<td>FALSE</td>
-</tr>
-<tr>
-<td>ANIMAL_TYPE</td>
-<td>VARCHAR(N)</td>
-<td>FALSE</td>
-</tr>
-<tr>
-<td>DATETIME</td>
-<td>DATETIME</td>
-<td>FALSE</td>
-</tr>
-<tr>
-<td>INTAKE_CONDITION</td>
-<td>VARCHAR(N)</td>
-<td>FALSE</td>
-</tr>
-<tr>
-<td>NAME</td>
-<td>VARCHAR(N)</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>SEX_UPON_INTAKE</td>
-<td>VARCHAR(N)</td>
-<td>FALSE</td>
-</tr>
-</tbody>
-      </table>
-<p>동물 보호소에 가장 먼저 들어온 동물의 이름을 조회하는 SQL 문을 작성해주세요. </p>
-
-<h5>예시</h5>
-
-<p>예를 들어 <code>ANIMAL_INS</code> 테이블이 다음과 같다면</p>
-<table class="table">
-        <thead><tr>
-<th>ANIMAL_ID</th>
-<th>ANIMAL_TYPE</th>
-<th>DATETIME</th>
-<th>INTAKE_CONDITION</th>
-<th>NAME</th>
-<th>SEX_UPON_INTAKE</th>
-</tr>
-</thead>
-        <tbody><tr>
-<td>A399552</td>
-<td>Dog</td>
-<td>2013-10-14 15:38:00</td>
-<td>Normal</td>
-<td>Jack</td>
-<td>Neutered Male</td>
-</tr>
-<tr>
-<td>A379998</td>
-<td>Dog</td>
-<td>2013-10-23 11:42:00</td>
-<td>Normal</td>
-<td>Disciple</td>
-<td>Intact Male</td>
-</tr>
-<tr>
-<td>A370852</td>
-<td>Dog</td>
-<td>2013-11-03 15:04:00</td>
-<td>Normal</td>
-<td>Katie</td>
-<td>Spayed Female</td>
-</tr>
-<tr>
-<td>A403564</td>
-<td>Dog</td>
-<td>2013-11-18 17:03:00</td>
-<td>Normal</td>
-<td>Anna</td>
-<td>Spayed Female</td>
-</tr>
-</tbody>
-      </table>
-<p>이 중 가장 보호소에 먼저 들어온 동물은 Jack입니다. 따라서 SQL문을 실행하면 다음과 같이 나와야 합니다.</p>
-<table class="table">
-        <thead><tr>
-<th>NAME</th>
-</tr>
-</thead>
-        <tbody><tr>
-<td>Jack</td>
-</tr>
-</tbody>
-      </table>
-<p>※ 보호소에 가장 먼저 들어온 동물은 한 마리인 경우만 테스트 케이스로 주어집니다.</p>
-
-<hr>
-
-<p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes" target="_blank" rel="noopener">Kaggle의 "Austin Animal Center Shelter Intakes and Outcomes"</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/" target="_blank" rel="noopener">ODbL</a>의 적용을 받습니다.</p>
-
-
-> 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges
+### 정리
+- rownum : n번째 행을 선택. 일반적으로 where절에서 쓰이며 정렬되지 않은 결과를 기반으로 함. 정렬된 결과를 기반으로 할 땐 서브쿼리를 함께 사용해야 한다.
+- fetch first, limit(MySQL) : 정렬된 결과 집합에서 처음부터 특정 개수의 행을 선택. rownum과 달리 반드시 정렬된 결과를 기반으로 하기 때문에 order by절이 꼭 필요하다.
