@@ -3,7 +3,8 @@ class Solution {
         int sum = 0;
         for(int i=0; i<array.length; i++) {
             if(array[i] > height) {
-                sum += 1;
+                //sum += 1;
+                sum++;
             }
         }
         return sum;
