@@ -1,12 +1,12 @@
 class Solution {
     public int solution(int[] array, int height) {
-        int sum = 0;
+        int count = 0;
         for(int i=0; i<array.length; i++) {
             if(array[i] > height) {
-                //sum += 1;
-                sum++;
+                count++;
             }
         }
-        return sum;
+        
+        return count;
     }
 }
