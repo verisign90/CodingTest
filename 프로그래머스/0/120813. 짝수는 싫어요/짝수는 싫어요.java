@@ -1,17 +1,26 @@
-import java.util.List;
-import java.util.ArrayList;
-
 class Solution {
     public int[] solution(int n) {
-        ArrayList<Integer> list = new ArrayList<>();
+//         int count = 0;
+//         for(int i=1; i<=n; i++) {
+//             if(i % 2 == 1) {
+//                 count++;
+//             }
+//         }
         
-        for(int i=1; i<=n; i+=2) {
-            list.add(i);
-        }
+//         int[] answer = new int[count];
+//         int index = 0;
+//         for(int i=1; i<=n; i++) {
+//             if(i % 2 == 1) {
+//                 answer[index++] = i;
+//             }
+//         }
         
-        int[] answer = new int[list.size()];
-        for(int i=0; i<list.size(); i++) {
-            answer[i] = list.get(i);
+//         return answer;
+        
+        int size = (n + 1) / 2;
+        int[] answer = new int[size];
+        for(int i=0; i<size; i++) {
+            answer[i] = 2 * i + 1;
         }
         
         return answer;
