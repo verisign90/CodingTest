@@ -1,25 +1,31 @@
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 class Solution {
     public int[] solution(int n, int[] numlist) {
-        List<Integer> list = new ArrayList<>();
+//         List<Integer> list = new ArrayList<>();
+        
+//         for(int num : numlist) {
+//             if(num % n == 0) {
+//                 list.add(num);
+//             }
+//         }
+        
+//         int[] answer = new int[list.size()];
+//         for(int i=0; i<answer.length; i++) {
+//             answer[i] = list.get(i);
+//         }
+        
+//         return answer;
+        
+        int[] answer = new int[numlist.length];
+        int index = 0;
         
         for(int num : numlist) {
             if(num % n == 0) {
-                list.add(num);
+                answer[index++] = num;
             }
         }
         
-        int[] answer = new int[list.size()];
-        // for(int i=0; i<list.size(); i++) {
-        //     answer[i] = list.get(i); 
-        // }
-        int index = 0;
-        for(int l : list) {
-            answer[index++] = l;
-        }
-        
-        return answer;
+        return Arrays.copyOf(answer, index);
     }
 }
