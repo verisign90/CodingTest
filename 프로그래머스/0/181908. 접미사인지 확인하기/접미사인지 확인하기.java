@@ -1,15 +1,11 @@
 class Solution {
     public int solution(String my_string, String is_suffix) {
-        return my_string.endsWith(is_suffix) ? 1 : 0;
-        
-//         if(is_suffix.length() <= my_string.length()) {
-//             int index = my_string.length() - is_suffix.length();
-//             String str = my_string.substring(index);
-//             if(str.equals(is_suffix)) {
-//                 return 1;
-//             }
-//         }
-        
-//         return 0;
+        int begin = my_string.length() - is_suffix.length();
+        if(my_string.length() < is_suffix.length()) {
+            return 0;
+        } else if(my_string.substring(begin).equals(is_suffix)) {
+            return 1;
+        }
+        return 0;
     }
 }
