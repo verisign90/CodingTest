@@ -1,14 +1,7 @@
 -- 코드를 작성해주세요
-# select count(*) as fish_count, b.fish_name
-# from fish_info a
-# join fish_name_info b
-# on a.fish_type = b.fish_type
-# group by b.fish_name
-# order by fish_count desc;
-
-select count(*) as fish_count, b.fish_name as fish_name
-from fish_info a
-join fish_name_info b
-on a.fish_type = b.fish_type
-group by a.fish_type, b.fish_name
+select count(*) as fish_count, n.fish_name
+from fish_info i
+join fish_name_info n
+on i.fish_type = n.fish_type
+group by i.fish_type, n.fish_name
 order by fish_count desc;
